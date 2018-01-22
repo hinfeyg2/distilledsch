@@ -99,3 +99,11 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+.DS_Store
+.icloud
+
+.README.md.icloud
+.requirements.txt.icloud
+
+
