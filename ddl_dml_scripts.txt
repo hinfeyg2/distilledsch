@@ -1,3 +1,13 @@
+CREATE TABLE `sys`.`car` (
+  `make` VARCHAR(45) NOT NULL,
+  `model` VARCHAR(45) NOT NULL,
+  `year` INT NULL,
+  `chassis_id` VARCHAR(45) NOT NULL,
+  `id` INT NOT NULL,
+  `last_update` DATETIME NOT NULL,
+  `price` INT NULL,
+  PRIMARY KEY (`id`));
+
 INSERT INTO `sys`.`car` (`make`, `model`, `year`, `chassis_id`, `id`, `last_update`, `price`) VALUES ('Nissan', 'Micra', '2004', '12345A', '0', '2017-02-01 00:00:00', '500');
 INSERT INTO `sys`.`car` (`make`, `model`, `year`, `chassis_id`, `id`, `last_update`, `price`) VALUES ('Nissan', 'Micra', '2004', '12425A', '1', '2017-03-01 00:00:00', '400');
 INSERT INTO `sys`.`car` (`make`, `model`, `year`, `chassis_id`, `id`, `last_update`, `price`) VALUES ('Ford', 'Fiesta', '2002', '12345B', '2', '2017-03-01 00:00:00', '300');
