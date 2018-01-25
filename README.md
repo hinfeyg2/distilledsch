@@ -15,7 +15,7 @@ Graduate Data Engineer Technical Challenge
 ```$ pip install -r requirements.txt```
 * ###### Create and populate database
 ```python input_data.py```
-```or run the sql commands in ddl_dml_scripts.txt```
+or run the sql commands in ddl_dml_scripts.txt
 * ###### Run the app
 ```$ python app.py```
 
