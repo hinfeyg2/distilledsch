@@ -47,9 +47,10 @@ def car_id(id):
 
 @app.route("/avgprice", methods=["POST"])
 def add_user():
-    make = request.json['make']
-    model = request.json['model']
-    year = request.json['year']
+    data = request.get_json()
+    make = data['make']
+    model = data['model']
+    year = data['year']
     result = Car.query.filter(Car.make == make, Car.model ==
                               model, Car.year == year).value(func.avg(Car.price))
     return jsonify(result)
@@ -57,10 +58,11 @@ def add_user():
 
 @app.route("/car", methods=["POST"])
 def user_update():
-    make = request.json['make']
-    model = request.json['model']
-    year = request.json['year']
-    chassis_id = request.json['chassis_id']
+    data = request.get_json()
+    make = data['make']
+    model = data['model']
+    year = data['year']
+    chassis_id = data['chassis_id']
     car = Car(make=make, model=model, year=year, chassis_id=chassis_id)
     db.session.add(car)
     db.session.commit()

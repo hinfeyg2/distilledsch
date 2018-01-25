@@ -1,5 +1,5 @@
 # distilledsch
-Graduate Data Engineer Technical Challenge
+Graduate Data Engineer Technical Challenge by Gavin Hinfey
 
 
 
