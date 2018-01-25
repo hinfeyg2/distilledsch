@@ -27,6 +27,7 @@ class CarSchema(ma.Schema):
 car_schema = CarSchema()
 cars_schema = CarSchema(many=True)
 
+
 @app.route("/car", methods=["GET"])
 def all_cars():
     all_cars = Car.query.all()
