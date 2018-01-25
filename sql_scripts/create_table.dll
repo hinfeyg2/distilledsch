@@ -1,0 +1,9 @@
+CREATE TABLE `sys`.`car` (
+  `make` VARCHAR(45) NOT NULL,
+  `model` VARCHAR(45) NOT NULL,
+  `year` INT NULL,
+  `chassis_id` VARCHAR(45) NOT NULL,
+  `id` INT NOT NULL,
+  `last_update` DATETIME NOT NULL,
+  `price` INT NULL,
+  PRIMARY KEY (`id`));

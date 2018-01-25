@@ -9,6 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///distilledsch.db'
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
+
 class Car(db.Model):
     __tablename__ = 'car'
     make = db.Column(db.String, nullable=False)
@@ -16,36 +17,43 @@ class Car(db.Model):
     year = db.Column(db.Integer, nullable=True)
     chassis_id = db.Column(db.String, nullable=False)
     id = db.Column(db.Integer, primary_key=True)
-    last_updated = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+    last_updated = db.Column(
+        db.DateTime, default=datetime.now(), nullable=False)
     price = db.Column(db.Integer, nullable=True)
+
 
 class CarSchema(ma.Schema):
     class Meta:
         # Fields to expose
         fields = ('make', 'model', 'year', 'id', 'last_updated', 'price')
 
+
 car_schema = CarSchema()
 cars_schema = CarSchema(many=True)
 
 
-@app.route("/car", methods=["GET"])
+@app.route("/car/", methods=["GET"])
 def all_cars():
     all_cars = Car.query.all()
     result = cars_schema.dump(all_cars)
     return jsonify(result.data)
+
 
 @app.route("/car/<id>", methods=["GET"])
 def car_id(id):
     car = Car.query.filter(Car.id == id).first()
     return car_schema.jsonify(car)
 
+
 @app.route("/avgprice", methods=["POST"])
 def add_user():
     make = request.json['make']
     model = request.json['model']
     year = request.json['year']
-    result = Car.query.filter(Car.make == make, Car.model == model, Car.year == year).value(func.avg(Car.price))
+    result = Car.query.filter(Car.make == make, Car.model ==
+                              model, Car.year == year).value(func.avg(Car.price))
     return jsonify(result)
+
 
 @app.route("/car", methods=["POST"])
 def user_update():
@@ -57,6 +65,7 @@ def user_update():
     db.session.add(car)
     db.session.commit()
     return car_schema.jsonify(car)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
