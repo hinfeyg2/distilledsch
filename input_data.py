@@ -1,9 +1,10 @@
 from app import db, Car
 import datetime
 
-
+# create the sqlite database file
 db.create_all()
 
+# populate database with given data
 with open('data/distilledsch_data.csv', 'rt', encoding='utf-8') as file:
 	next(file)
 	for line in file:
@@ -12,4 +13,5 @@ with open('data/distilledsch_data.csv', 'rt', encoding='utf-8') as file:
 		car = Car(make=make, model=model, year=year, chassis_id=chassis_id, id=_id, last_updated=parsed_datetime, price=price)
 		db.session.add(car)
 
+# commit additions to database
 db.session.commit()

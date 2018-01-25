@@ -32,6 +32,7 @@ car_schema = CarSchema()
 cars_schema = CarSchema(many=True)
 
 
+# return all cars in database
 @app.route("/car/", methods=["GET"])
 def all_cars():
     all_cars = Car.query.all()
@@ -39,12 +40,14 @@ def all_cars():
     return jsonify(result.data)
 
 
+# return cars with specific id
 @app.route("/car/<id>", methods=["GET"])
 def car_id(id):
     car = Car.query.filter(Car.id == id).first()
     return car_schema.jsonify(car)
 
 
+#  return the avg price of cars with given criteria
 @app.route("/avgprice", methods=["POST"])
 def add_user():
     data = request.get_json()
@@ -56,6 +59,7 @@ def add_user():
     return jsonify(result)
 
 
+# add car to the database
 @app.route("/car", methods=["POST"])
 def user_update():
     data = request.get_json()
